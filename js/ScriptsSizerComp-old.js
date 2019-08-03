@@ -1,5 +1,5 @@
 
-/* SizerScriptComp.js */
+/* SizerScriptComp-old.js */
 
 /*---------------------------------------------------------
 *  Show or hide image
@@ -186,7 +186,7 @@ function createSizer(imageUrl, caption, hiderText, hiderTop, size, placeholder) 
   let imgSize = "width:" + size.toString() + "px";
   imageContainer.setAttribute("style", imgSize);
   let image = document.createElement("img");
-  image.addEventListener("click", function () { bigger(imageContainerId); });
+  //image.addEventListener("click", function () { bigger(imageContainerId); });
   image.setAttribute("src", imageUrl);
   image.setAttribute("width", "100%");
   imageContainer.appendChild(image);
@@ -197,11 +197,7 @@ function createSizer(imageUrl, caption, hiderText, hiderTop, size, placeholder) 
     imageContainer.appendChild(title);
   }
   imageWrapper.appendChild(imageContainer);
-  //imageWrapper.appendChild(sizer);
+  imageWrapper.appendChild(sizer);
 
   loc.appendChild(imageWrapper);
-
-  let body = getElementById("github");
-  body.addEventListener("click", function () { restore(); });
-
 }
