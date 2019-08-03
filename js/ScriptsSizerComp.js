@@ -47,10 +47,9 @@ var idCount = 0;
 *  - size:        width of image container
 *  - placeholder: id of div that defines location of image in page
 */
-function createSizer(imageUrl, caption, hiderText, hiderTop, size, placeholder) {
+function createSizer(imageUrl, caption, size, placeholder) {
 
   let imageContainerId = "imageContainerId" + (++idCount).toString();
-  let top = "top:" + hiderTop;
 
   // add sizer to document
   let loc = document.getElementById(placeholder);
@@ -61,8 +60,8 @@ function createSizer(imageUrl, caption, hiderText, hiderTop, size, placeholder) 
   imageWrapper.setAttribute("id", imageWrapperId);
   let imageContainer = document.createElement("image-container");
   imageContainer.setAttribute("id", imageContainerId);
-  let imgSize = "width:" + size.toString() + "px";
-  imageContainer.setAttribute("style", imgSize);
+  let imgStyle = "width:" + size.toString() + "px;" + "padding:5px;";
+  imageContainer.setAttribute("style", imgStyle);
   let image = document.createElement("img");
   //image.addEventListener("click", function () { bigger(imageContainerId); });
   image.setAttribute("src", imageUrl);
