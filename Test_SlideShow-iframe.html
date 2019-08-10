@@ -14,82 +14,145 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Test SlideShow</title>
-  <!--<script src="js/ScriptsTemplate.js"></script>
-  <script src="js/ScriptsKeyboard.js"></script>
-  <script src="js/ScriptsMenu.js"></script>
-  <script src="js/ScriptsSlideShow.js"></script>
-  <link rel="stylesheet" href="css/StylesTemplate.css" />
-  <link rel="stylesheet" href="css/StylesMenu.css" />
-  <link rel="stylesheet" href="css/StylesSlideShow.css" />-->
+  <script src="js/ScriptsStoryKeyboard.js"></script>
+  <!--<link rel="stylesheet" href="css/StylesTemplate.css" />-->
   <style>
     grid-container {
-      display:grid;
+      display: grid;
       grid-gap: 0.2em;
-      grid-template-columns: 2em 1fr 2em;
+      grid-template-columns: 1fr 2em;
       grid-template-rows: 2em 1fr;
-      grid-template-areas: "header header header" "left main right";
+      grid-template-areas: "header header" "main right";
       background-color: #cc0000;
       /*border: 1em solid #cc0000;*/
       position: absolute;
-      top:0em;
+      top: 0em;
       bottom: 0em;
       left: 0.1em;
       right: 0.1em;
     }
+
     .header {
       grid-area: header;
-      background-color:white;
-      text-align:left;
-      vertical-align:central;
-      line-height:1.6em;
-      padding-left:1em;
-      font-size:large;
-      font-weight:bold;
+      background-color: white;
+      text-align: left;
+      vertical-align: central;
+      line-height: 1.6em;
+      padding-left: 1em;
+      font-size: large;
+      font-weight: bold;
     }
+
+    .firstButton {
+      font-size: large;
+      /*font-weight: bold;*/
+      width:1.9em;
+    }
+
     .left {
-      grid-area:left;
-      background-color:white;
+      grid-area: left;
+      background-color: white;
     }
-    .leftButton {
-      position:relative;
-      top: 45%;
-      font-size:large;
-      font-weight:bold;
+
+    .backwardButton {
+      font-size: large;
+      font-weight: bold;
+      width:1.9em;
     }
+
     .main {
       grid-area: main;
-      background-color:white;
+      background-color: white;
     }
+
     .right {
-      grid-area:right;
-      background-color:white;
+      grid-area: right;
+      background-color: white;
     }
-    .rightButton {
-      position:relative;
-      top: 45%;
-      font-size:large;
-      font-weight:bold;
-      /*vertical-align:central;*/
+
+    .forwardButton {
+      font-size: large;
+      font-weight: bold;
+      width:1.9em;
     }
+
+    .currentButton {
+      font-size: large;
+      /*font-weight: bold;*/
+      width:1.9em;
+    }
+
+    .refreshButton {
+      font-size: large;
+      /*font-weight: bold;*/
+      width:1.9em;
+    }
+
+    .exitButton {
+      font-size: large;
+      /*font-weight: bold;*/
+      width:1.9em;
+    }
+
+    .lastButton {
+      font-size: large;
+      /*font-weight: bold;*/
+      width:1.9em;
+    }
+
     .resp-container {
-      position:relative;
-      overflow:hidden;
-      /*padding-top: 46.1%;*/
-      z-index:5;
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
     }
+
     .resp-iframe {
-      position:relative;
+      position: relative;
       top: 0;
-      left:0;
+      left: 0;
       width: 100%;
-      height:100%;
+      height: 100%;
+    }
+    /* 
+      tooltip styles are slightly modified versions of ones
+      presented in w3schools.com
+    */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 5px;
+      position: absolute;
+      z-index: 10;
+      top:-10px;
+      right: 125%;
+  
+      /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+      right:105%;;
     }
   </style>
   <script>
-    var numPages = 7;
+    var numPages = 8;
     var storyPage = [
       "../JimFawcett.github.io/index.html",
       "../JimFawcett.github.io/Repositories.html",
+      "../JimFawcett.github.io/TextFinder.html",
       "../JimFawcett.github.io/LangCpp.html",
       "../JimFawcett.github.io/DesignNote-CppClasses.html",
       "../JimFawcett.github.io/Templates.html",
@@ -97,7 +160,7 @@
       "../JimFawcett.github.io/Resources/ValueType.pdf"
     ]
 
-    var storyIndex;
+    var storyIndex = 0;
 
     function showSlideAddr(n) {
       let addrHolder = document.getElementById("slideAddress");
@@ -108,43 +171,41 @@
       numHolder.innerHTML = n.toString() + " of " + numPages.toString() + " pages";
     }
     function render(si) {
+      storyIndex = si;
       showSlideAddr(si);
       showSlideNum(si + 1);
       let page = storyPage[si];
       let slider = document.getElementById("slideShow");
       slider.setAttribute("src", page);
+      document.getElementById("slideShow").src = document.getElementById("slideShow").src;
+    }
+    function first() {
+      render(0);
+    }
+    function last() {
+      render(numPages - 1);
     }
     function forward() {
-      storyIndex = (++storyIndex) % numPages;
-      render(storyIndex);
-      //showSlideAddr(storyIndex);
-      //showSlideNum(storyIndex + 1);
-      //let page = storyPage[storyIndex];
-      //let slider = document.getElementById("slideShow");
-      //slider.setAttribute("src", page);
+      var si = (++storyIndex) % numPages;
+      render(si);
     }
     function backward() {
-      storyIndex = (--storyIndex) % numPages;
-      if (storyIndex === -1)
-        storyIndex = numPages - 1;
-      render(storyIndex);
-      //showSlideAddr(storyIndex);
-      //showSlideNum(storyIndex + 1);
-      //let page = storyPage[storyIndex];
-      //let slider = document.getElementById("slideShow");
-      //slider.setAttribute("src", page);
+      var si = (--storyIndex) % numPages;
+      if (si === -1)
+        si = numPages - 1;
+      render(si);
     }
     function current() {
       render(storyIndex);
-      //storyIndex = storyIndex % numPages;
-      //showSlideAddr(storyIndex);
-      //showSlideNum(storyIndex + 1);
-      //let page = storyPage[storyIndex];
-      //let slider = document.getElementById("slideShow");
-      //slider.setAttribute("src", page);
     }
     function refresh() {
-      document.getElementById("slideShow").src = document.getElementById("slideShow").src;
+      showSlideAddr(storyIndex);
+      showSlideNum(storyIndex + 1);
+      render(storyIndex);
+      document.addEventListener('keydown', (event) => { keyAction(event); }, false);
+    }
+    function exit() {
+      location.replace("../JimFawcett.github.io/index.html");
     }
   </script>
 </head>
@@ -155,17 +216,51 @@
       Test story: iframe slideshow - <span id="slideAddress"></span>
       <div style="float:right; padding-right:25px;">Page <span id="slideNum">1</span></div>
     </div>
-    <div class="left" onclick="backward()"><button class="leftButton">&lt;</button></div>
     <div class="main resp-container">
       <iframe id="slideShow" class="resp-iframe" src=""></iframe>
     </div>
-    <div class="right" onclick="forward()"><button class="rightButton">&gt;</button></div>
+    <div class="right">
+      <div style="height:40px;"></div>
+      <div class="tooltip">
+        <div class="tooltiptext">move to first slide</div>
+        <button class="firstButton" onclick="first()">F</button>
+      </div>
+      <div class="tooltip">
+        <div class="tooltiptext">move to next slide</div>
+        <button class="forwardButton" onclick="forward()">N</button>
+      </div>
+      <div class="tooltip">
+        <div class="tooltiptext">move to prev slide</div>
+        <button class="backwardButton" onclick="backward()">P</button>
+      </div>
+      <div class="tooltip">
+        <div class="tooltiptext">move to last slide</div>
+        <button class="lastButton" onclick="last()">L</button>
+      </div>
+      <div class="tooltip">
+        <div class="tooltiptext">return to page sequence</div>
+        <button class="currentButton" onclick="current()">C</button>
+      </div>
+      <div class="tooltip">
+        <div class="tooltiptext">refresh story content</div>
+        <button class="refreshButton" onclick="refresh()">R</button>
+      </div>
+      <div class="tooltip">
+        <div class="tooltiptext">exit story</div>
+        <button class="exitButton" onclick="exit()">E</button>
+      </div>
+      <!--<button class="forwardButton" onclick="forward()">&gt;</button>
+  <button class="backwardButton" onclick="backward()">&lt;</button>
+  <button class="lastButton" onclick="last()">L</button>
+  <button class="currentButton" onclick="current()">C</button>
+  <button class="refreshButton" onclick="refresh()">R</button>
+  <button class="exitButton" onclick="exit()">E</button>-->
+    </div>
   </grid-container>
 
   <script>
-    storyIndex = 0;
+    //first();
     refresh();
-    current();
   </script>
   <info-bar></info-bar>
 </body>
