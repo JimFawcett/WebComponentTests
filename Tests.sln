@@ -10,12 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		js\ScriptsMenu.js = js\ScriptsMenu.js
 		js\ScriptsSizerComp-old.js = js\ScriptsSizerComp-old.js
 		js\ScriptsSizerComp.js = js\ScriptsSizerComp.js
+		js\ScriptsSlideShow.js = js\ScriptsSlideShow.js
 		js\ScriptsTemplate.js = js\ScriptsTemplate.js
 		css\StylesMenu.css = css\StylesMenu.css
 		css\StylesSizerComp.css = css\StylesSizerComp.css
+		css\StylesSlideShow.css = css\StylesSlideShow.css
 		css\StylesTemplate.css = css\StylesTemplate.css
 		Test_Sizer-old.html = Test_Sizer-old.html
 		Test_Sizer.html = Test_Sizer.html
+		Test_SlideShow-iframe.html = Test_SlideShow-iframe.html
+		Test_SlideShow.html = Test_SlideShow.html
 	EndProjectSection
 EndProject
 Global

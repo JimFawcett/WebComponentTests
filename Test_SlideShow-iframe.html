@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <!--
+   - Test_Sizer.html - test image sizer
+   - ver 1.0 - 03 August 2019
+   - Jim Fawcett, Syracuse University
+  -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta name="description" content="Software Projects. Code Samples. Software Links" />
+  <meta name="keywords" content="Repository, Design, Code" />
+  <meta name="Author" content="Jim Fawcett" />
+  <meta name="Author" content="James Fawcett" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test SlideShow</title>
+  <!--<script src="js/ScriptsTemplate.js"></script>
+  <script src="js/ScriptsKeyboard.js"></script>
+  <script src="js/ScriptsMenu.js"></script>
+  <script src="js/ScriptsSlideShow.js"></script>
+  <link rel="stylesheet" href="css/StylesTemplate.css" />
+  <link rel="stylesheet" href="css/StylesMenu.css" />
+  <link rel="stylesheet" href="css/StylesSlideShow.css" />-->
+  <style>
+    grid-container {
+      display:grid;
+      grid-gap: 0.2em;
+      grid-template-columns: 2em 1fr 2em;
+      grid-template-rows: 2em 1fr;
+      grid-template-areas: "header header header" "left main right";
+      background-color: #cc0000;
+      /*border: 1em solid #cc0000;*/
+      position: absolute;
+      top:0em;
+      bottom: 0em;
+      left: 0.1em;
+      right: 0.1em;
+    }
+    .header {
+      grid-area: header;
+      background-color:white;
+      text-align:left;
+      vertical-align:central;
+      line-height:1.6em;
+      padding-left:1em;
+      font-size:large;
+      font-weight:bold;
+    }
+    .left {
+      grid-area:left;
+      background-color:white;
+    }
+    .leftButton {
+      position:relative;
+      top: 45%;
+      font-size:large;
+      font-weight:bold;
+    }
+    .main {
+      grid-area: main;
+      background-color:white;
+    }
+    .right {
+      grid-area:right;
+      background-color:white;
+    }
+    .rightButton {
+      position:relative;
+      top: 45%;
+      font-size:large;
+      font-weight:bold;
+      /*vertical-align:central;*/
+    }
+    .resp-container {
+      position:relative;
+      overflow:hidden;
+      /*padding-top: 46.1%;*/
+      z-index:5;
+    }
+    .resp-iframe {
+      position:relative;
+      top: 0;
+      left:0;
+      width: 100%;
+      height:100%;
+    }
+  </style>
+  <script>
+    var numPages = 7;
+    var storyPage = [
+      "../JimFawcett.github.io/index.html",
+      "../JimFawcett.github.io/Repositories.html",
+      "../JimFawcett.github.io/LangCpp.html",
+      "../JimFawcett.github.io/DesignNote-CppClasses.html",
+      "../JimFawcett.github.io/Templates.html",
+      "../JimFawcett.github.io/Resources/SurvivalGuide.pdf",
+      "../JimFawcett.github.io/Resources/ValueType.pdf"
+    ]
+
+    var storyIndex;
+
+    function showSlideAddr(n) {
+      let addrHolder = document.getElementById("slideAddress");
+      addrHolder.innerHTML = storyPage[n];
+    }
+    function showSlideNum(n) {
+      let numHolder = document.getElementById("slideNum");
+      numHolder.innerHTML = n.toString() + " of " + numPages.toString() + " pages";
+    }
+    function render(si) {
+      showSlideAddr(si);
+      showSlideNum(si + 1);
+      let page = storyPage[si];
+      let slider = document.getElementById("slideShow");
+      slider.setAttribute("src", page);
+    }
+    function forward() {
+      storyIndex = (++storyIndex) % numPages;
+      render(storyIndex);
+      //showSlideAddr(storyIndex);
+      //showSlideNum(storyIndex + 1);
+      //let page = storyPage[storyIndex];
+      //let slider = document.getElementById("slideShow");
+      //slider.setAttribute("src", page);
+    }
+    function backward() {
+      storyIndex = (--storyIndex) % numPages;
+      if (storyIndex === -1)
+        storyIndex = numPages - 1;
+      render(storyIndex);
+      //showSlideAddr(storyIndex);
+      //showSlideNum(storyIndex + 1);
+      //let page = storyPage[storyIndex];
+      //let slider = document.getElementById("slideShow");
+      //slider.setAttribute("src", page);
+    }
+    function current() {
+      render(storyIndex);
+      //storyIndex = storyIndex % numPages;
+      //showSlideAddr(storyIndex);
+      //showSlideNum(storyIndex + 1);
+      //let page = storyPage[storyIndex];
+      //let slider = document.getElementById("slideShow");
+      //slider.setAttribute("src", page);
+    }
+    function refresh() {
+      document.getElementById("slideShow").src = document.getElementById("slideShow").src;
+    }
+  </script>
+</head>
+<body id="github" onload="initializeMenu()">
+
+  <grid-container>
+    <div class="header" onclick="current()">
+      Test story: iframe slideshow - <span id="slideAddress"></span>
+      <div style="float:right; padding-right:25px;">Page <span id="slideNum">1</span></div>
+    </div>
+    <div class="left" onclick="backward()"><button class="leftButton">&lt;</button></div>
+    <div class="main resp-container">
+      <iframe id="slideShow" class="resp-iframe" src=""></iframe>
+    </div>
+    <div class="right" onclick="forward()"><button class="rightButton">&gt;</button></div>
+  </grid-container>
+
+  <script>
+    storyIndex = 0;
+    refresh();
+    current();
+  </script>
+  <info-bar></info-bar>
+</body>
+</html>
