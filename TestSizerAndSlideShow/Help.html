@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <!--
+   - Repositories.html - Summaries of Repositories
+   - ver 1.0 - 10 June 2019
+   - Jim Fawcett, Emeritus Teaching Professor, Syracuse University
+  -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta name="description" content="Software Projects. Code Samples. Software Links" />
+  <meta name="keywords" content="Repository, Design, Code" />
+  <meta name="Author" content="Jim Fawcett" />
+  <meta name="Author" content="James Fawcett" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Help</title>
+  <script src="js/ScriptsTemplate.js"></script>
+  <script src="js/ScriptsKeyboard.js"></script>
+  <script src="js/ScriptsMenu.js"></script>
+  <link rel="stylesheet" href="css/StylesTemplate.css" />
+  <link rel="stylesheet" href="css/StylesMenu.css" />
+  <style>
+    summary {
+      padding: 3px 0px 5px 0px;
+    }
+  </style>
+</head>
+<body id="github" onload="initializeMenu()">
+
+  <navKeysContainer>
+    <navKey onclick="location.reload()">R</navKey>
+    <navKey onclick="scrollPageTop()">T</navKey>
+    <navKey onclick="scrollPageBottom()">B</navKey>
+    <navKey onclick="helpWin()">H</navKey>
+    <navKey onclick="loadPrev()">P</navKey>
+    <navKey onclick="loadNext()">N</navKey>
+  </navKeysContainer>
+
+  <nav>
+    <div id="navbar"></div>
+  </nav>
+  <!--<a id="Next" href="BlogDesign.htm">N</a>
+  <a id="Prev" href="BlogFileSystem.htm">P</a>-->
+
+  <header>
+    <hgroup id="pagetitle">
+      <h1 id="title">Help for Menus and Keys</h1>
+    </hgroup>
+  </header>
+
+  <!-- page content -->
+  <!--<indent-block>
+    <img style="width:70%;" class="strip-photo" src="Pictures/TextFinderCodeStrip.jpg" alt="Text Finder Code Strip" />
+  </indent-block>-->
+  <spacer-15></spacer-15>
+
+  <div style="padding-left:25px;">
+    "There cannot be a crisis next week. My schedule is already full."
+    <br />
+    - Henry Kissinger
+  </div>
+
+  <hr class="spread" />
+  <indent-block>
+    <strong>Help with Menus:</strong>
+    <ol class="tight">
+      <li>Pages that have a logical predecessor and successor will show Prev and Next links on top menu</li>
+      <li>
+        At the top right are two buttons, [&lt;] and [&gt;], that scroll the menu left or right.
+        These bring links into view if there isn't room to display all the links in the menu.
+      </li>
+      <li>
+        At the lower right you will see navigation buttons (NavKeys).  You can either click a button
+        or type the corresponding key to invoke its action.  You can hide or show the buttons
+        by selecting About > Toggle Nav Keys.
+      </li>
+      <li>
+        NavKey toggles are persistent across pages and sessions.  That&apos;s done by saving the
+        toggle state in Local Storage.
+      </li>
+      <li>
+        Some images have resizer widgets that allow you to make an image larger or smaller by clicking
+        on the image. Restore the original size by refreshing the page.
+      </li>
+      <li>
+        All information related things are accessed from Home, Notes, Blogs, Resources, and Platforms,
+        available as dropdowns from the Home menu.
+      </li>
+      <li>
+        Code related things are accessed from Repositories and Prog Lang from the Home menu.
+      </li>
+      <li>
+        Repositories organize code into Utilities, Tools, Components, Libraries, Projects, and
+        demos, all available from the Repositories menu.
+      </li>
+      <li>
+        You can quickly find any repository by hovering over each of the Repository categories in turn
+        to see a dropdown with repositories for that category.
+      </li>
+      <li>
+        Home > Prog Lang will have pages for several popular languages.  Right now it only has my
+        favorite, C++, but others will follow.
+      </li>
+      <li>
+        Site Map has links to most of the important topics, all in one view.
+      </li>
+    </ol>
+    <spacer-15></spacer-15>
+    <strong>Help with Keyboard actions:</strong>
+    <ol class="tight">
+      <!--<li>C - load course page (available on Lecture pages)</li>
+  <li>L - load first lecture page (available on Course pages)</li>-->
+      <li>R - refresh page</li>
+      <li>T - scroll to page top</li>
+      <li>B - scroll to page bottom</li>
+      <li>H - show this page in a separate window</li>
+      <li>
+        P - change to prev page, if defined with a page link
+      </li>
+      <li>
+        N - change to next page, if defined with a page link
+      </li>
+      <li>U - scroll up</li>
+      <li>D - scroll down</li>
+    </ol>
+    <spacer-15></spacer-15>
+  </indent-block>
+  <spacer-15></spacer-15>
+  <!--<img class="strip-photo" src="Pictures/CampusAtNight.jpg" alt="campus at night" />-->
+
+  <info-bar></info-bar>
+</body>
+</html>
