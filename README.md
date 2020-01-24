@@ -1,4 +1,4 @@
-# Tests
+# WebComponentTests
 
 https://JimFawcett.github.io/Tests.html
 
