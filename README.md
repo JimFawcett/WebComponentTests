@@ -1,5 +1,5 @@
 # WebComponentTests
 
-https://JimFawcett.github.io/Tests.html
+https://JimFawcett.github.io/WebComponentTests.html
 
 Experiments with page widgets
